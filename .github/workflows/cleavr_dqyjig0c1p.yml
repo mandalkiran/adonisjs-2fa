@@ -18,7 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     outputs:
-      cleavr-step-status: ${{ steps }}    
+      cleavr-step-status: ${{ toJson(steps) }}    
+      artifact-formatted-time: ${{ steps.artifact.outputs.formattedTime }}
     steps:
       - uses: actions/checkout@v3
         id: checkout
@@ -59,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo step output
-        run: echo "${{ needs.build.outputs.cleavr-step-status.artifact }}"
+        run: echo "${{ needs.build.outputs.artifact-formatted-time }}"
         
       - name: Start Cleavr Deployment
         uses: fjogeleit/http-request-action@master
