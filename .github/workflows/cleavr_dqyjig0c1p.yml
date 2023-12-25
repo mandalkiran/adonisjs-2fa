@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo step output
-        run: echo "Upload Artifact Status:${{ needs.build.outputs.cleavr-step-status.artifact }}"
+        run: echo "${{ needs.build.outputs.cleavr-step-status }}"
         
       - name: Start Cleavr Deployment
         uses: fjogeleit/http-request-action@master
