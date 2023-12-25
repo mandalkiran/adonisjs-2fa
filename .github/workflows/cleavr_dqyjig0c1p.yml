@@ -51,6 +51,11 @@ jobs:
           path: build/
           if-no-files-found: error
 
+  cleavr:
+    if: always()
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Start Cleavr Deployment
         uses: fjogeleit/http-request-action@master
         with:
