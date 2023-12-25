@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     outputs:
-      cleavr-step-status: ${{ toJson(steps) }}    
+      cleavr-step-status: ${{ steps }}    
     steps:
       - uses: actions/checkout@v3
         id: checkout
