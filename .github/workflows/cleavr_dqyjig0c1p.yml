@@ -68,4 +68,4 @@ jobs:
           method: 'POST'
           timeout: 60000
           data: '{"status": "${{ needs.build.result }}" , "steps": ${{ toJson(needs.build.outputs.cleavr-step-status) }} }'
-          customHeaders: '{"artifact": "${{ steps.artifact.outputs.formattedTime }}"}'
+          customHeaders: '{"artifact": "${{ needs.build.outputs.steps.cleavr-step-status.artifact.outputs.formattedTime }}"}'
