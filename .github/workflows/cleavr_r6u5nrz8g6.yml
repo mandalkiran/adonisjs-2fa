@@ -15,16 +15,6 @@ on:
       # If you change the default branch in Cleavr under the Webapp's settings, make sure to change it here as well.
       - master
 jobs:
-  init:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Start Cleavr Deployment
-        uses: fjogeleit/http-request-action@master
-        with:
-          url: '${{ secrets.DEPLOY_TRIGGER_HOOK_cleavr_r6u5nrz8g6 }}'
-          method: 'POST'
-          data: '{"status": "init" }'
-          timeout: 60000
   build:
     runs-on: ubuntu-22.04
     outputs:
@@ -63,17 +53,11 @@ jobs:
           path: build/
           if-no-files-found: error
 
-  complete:
-    if: always()
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Complete Cleavr Deployment
+      - name: Start Cleavr Deployment
         uses: fjogeleit/http-request-action@master
         with:
-          url: '${{ secrets.DEPLOY_TRIGGER_HOOK_cleavr_r6u5nrz8g6 }}'
+          url: '${{ secrets.DEPLOY_TRIGGER_HOOK_cleavr_4thmagsx5i }}'
           method: 'POST'
-          data: '{"status": "${{ needs.build.result }}" , "steps": ${{ toJson(needs.build.outputs.cleavr-step-status) }} }'
           timeout: 60000
-          customHeaders: '{"artifact": "${{ needs.build.outputs.artifact-formatted-time }}"}'
+          customHeaders: '{"artifact": "${{ steps.artifact.outputs.formattedTime }}"}'    
 
