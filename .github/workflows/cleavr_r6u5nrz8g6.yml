@@ -56,7 +56,7 @@ jobs:
       - name: Start Cleavr Deployment
         uses: fjogeleit/http-request-action@master
         with:
-          url: '${{ secrets.DEPLOY_TRIGGER_HOOK_cleavr_4thmagsx5i }}'
+          url: '${{ secrets.DEPLOY_TRIGGER_HOOK_cleavr_r6u5nrz8g6 }}'
           method: 'POST'
           timeout: 60000
           customHeaders: '{"artifact": "${{ steps.artifact.outputs.formattedTime }}"}'    
